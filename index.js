@@ -9,6 +9,11 @@ const mongoose = require('mongoose')
 const RoomDatas = require('./Models/createRoom.model')
 
 const RoomCreateRouter = require('./Routes/room.route')
+const BookingRouter = require('./Routes/Booking.route')
+const ClientRouter = require('./Routes/Client.route')
+const ReviewRouter = require('./Routes/HotelReviews.route')
+const HotelGalleryRouter = require('./Routes/HotelGallery.route')
+const AdminRouter = require('./Routes/Admin.route')
 
 
 //Middleware
@@ -28,6 +33,11 @@ mongoose.connect(process.env.DATABASE_URL,{
 
 
 app.use('/api/v1/room',RoomCreateRouter)
+app.use('/api/v1/booking',BookingRouter)
+app.use('/api/v1/client',ClientRouter)
+app.use('/api/v1/review',ReviewRouter)
+app.use('/api/v1/hotelGallery',HotelGalleryRouter)
+app.use('/api/v1/admin',AdminRouter)
 
 
 
