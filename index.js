@@ -1,12 +1,10 @@
 const express = require('express')
 const app = express()
-const port = 8000
+const port = process.env.PORT || 8000
 const bodyParser = require('body-parser')
 const cors = require('cors')
 require('dotenv').config()
 const mongoose = require('mongoose')
-
-const RoomDatas = require('./Models/createRoom.model')
 
 const RoomCreateRouter = require('./Routes/room.route')
 const BookingRouter = require('./Routes/Booking.route')
@@ -31,6 +29,10 @@ mongoose.connect(process.env.DATABASE_URL,{
   console.log('Database connected')
 })
 
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
 
 app.use('/api/v1/room',RoomCreateRouter)
 app.use('/api/v1/booking',BookingRouter)
@@ -40,10 +42,6 @@ app.use('/api/v1/hotelGallery',HotelGalleryRouter)
 app.use('/api/v1/admin',AdminRouter)
 
 
-
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 
 
