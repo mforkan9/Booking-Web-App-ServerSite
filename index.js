@@ -1,27 +1,27 @@
-import express from 'express'
+const express = require('express')
 const app = express()
 const port = process.env.PORT || 8000
-import { urlencoded, json } from 'body-parser'
-import cors from 'cors'
+const bodyParser = require('body-parser')
+const cors = require('cors')
 require('dotenv').config()
-import { connect } from 'mongoose'
+const mongoose = require('mongoose')
 
-import RoomCreateRouter from './Routes/room.route'
-import BookingRouter from './Routes/Booking.route'
-import ClientRouter from './Routes/Client.route'
-import ReviewRouter from './Routes/HotelReviews.route'
-import HotelGalleryRouter from './Routes/HotelGallery.route'
-import AdminRouter from './Routes/Admin.route'
+const RoomCreateRouter = require('./Routes/room.route')
+const BookingRouter = require('./Routes/Booking.route')
+const ClientRouter = require('./Routes/Client.route')
+const ReviewRouter = require('./Routes/HotelReviews.route')
+const HotelGalleryRouter = require('./Routes/HotelGallery.route')
+const AdminRouter = require('./Routes/Admin.route')
 
 
 //Middleware
-app.use(urlencoded({ extended: false }))
-app.use(json())
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 app.use(cors())
 
 
 //Database
-connect(process.env.DATABASE_URL,{
+mongoose.connect(process.env.DATABASE_URL,{
   useNewUrlParser: true,
   useUnifiedTopology: true,
   dbName:'Booking-web'
